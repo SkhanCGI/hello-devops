@@ -47,8 +47,7 @@ jobs:
 
       - name: Show selected code root
         run: |
-          echo "CODE_ROOT=${{ steps.detect_root.outputs.code_root }}"
-          ls -la "${{ steps.detect_root.outputs.code_root }}"
+          black --check hello-devops
 
       - name: Black check (format)
         run: |
