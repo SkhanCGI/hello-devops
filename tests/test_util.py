@@ -1,7 +1,11 @@
+from unittest.mock import patch
 from http_util import fetch_status
 
 
-def test_fetch_status_ok():
-    # httpbin.org provides stable testing endpoints
-    status = fetch_status("https://httpbin.org/status/200")
-    assert status == 200
+@patch("http_util.requests.get")
+def test_fetch_status_mock(mock_get):
+    class Dummy:
+        status_code = 200
+
+    mock_get.return_value = Dummy()
+    assert fetch_status("https://example.com") == 200

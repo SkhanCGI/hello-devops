@@ -6,3 +6,4 @@ def fetch_status(url: str) -> int:
     resp = requests.get(url, timeout=5)
     return resp.status_code
 
+
