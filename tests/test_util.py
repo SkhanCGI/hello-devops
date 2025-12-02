@@ -1,6 +1,5 @@
 from unittest.mock import patch
-from http_util import fetch_status
-
+from hello import fetch_status
 
 @patch("hello.http_util.requests.get")
 def test_fetch_status_mock(mock_get):
