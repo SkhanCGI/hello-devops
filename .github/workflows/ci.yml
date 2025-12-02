@@ -82,7 +82,20 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          # install runtime dependencies (if any)
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          # ensure test tools are available
           pip install pytest pytest-cov
+
+      - name: List repository files (debug)
+        run: |
+          echo "PWD=$(pwd)"
+          ls -la
+          echo "Top-level files:"
+          ls -R .
+
+      - name: Add repo root to PYTHONPATH
+        run: echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
 
       - name: Run tests with coverage
         run: |
@@ -93,4 +106,5 @@ jobs:
         with:
           name: coverage-report
           path: coverage.xml
+
 
