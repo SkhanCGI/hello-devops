@@ -8,3 +8,6 @@ flake8
 black
 bandit
 build
+
+fastapi
+uvicorn[standard]
